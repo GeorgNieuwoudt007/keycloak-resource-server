@@ -37,7 +37,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
                 )
         )
 )
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "nl.georg.keycloak")
 @EntityScan(basePackages = {"nl.georg.keycloak.user.entities"})
 public class KeycloakApplication {
 
