@@ -25,5 +25,6 @@ public class UserCreateDTO {
     private String email;
     private String note;
     private Instant createdAt;
-    private String createdBy;
+    private Integer parentId;
+    private UserDTO createdBy;
 }

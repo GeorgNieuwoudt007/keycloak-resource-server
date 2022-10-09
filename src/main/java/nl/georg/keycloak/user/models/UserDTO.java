@@ -5,9 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
+import java.util.List;
 
 @Builder
 @Data
@@ -26,5 +30,5 @@ public class UserDTO {
     private String email;
     private String note;
     private Instant createdAt;
-    private String createdBy;
+    private UserDTO createdBy;
 }

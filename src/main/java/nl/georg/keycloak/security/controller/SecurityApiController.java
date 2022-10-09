@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @PreAuthorize("isAuthenticated()")
 @SecurityRequirement(name = "security_auth")
 @Tag(name = "Security Controller", description = "API to retrieve security information")
-public class SecurityController {
+public class SecurityApiController {
 
     @Operation(
             summary = "Get JWT token",

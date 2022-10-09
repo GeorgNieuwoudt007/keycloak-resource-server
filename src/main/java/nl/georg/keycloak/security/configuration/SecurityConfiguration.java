@@ -18,8 +18,13 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests().antMatchers("/actuator*").permitAll().and()
-                .oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter());
+                .authorizeRequests()
+                .antMatchers("/actuator*")
+                .permitAll()
+                .and()
+                .oauth2ResourceServer()
+                .jwt()
+                .jwtAuthenticationConverter(jwtAuthenticationConverter());
 
         return http.build();
     }

@@ -52,7 +52,7 @@ public class User {
             JsonViews.Update.class
     })
     @Schema(description = "The first name of the user", example = "John")
-    @Column(name = "first_name")
+    @Column(name = "first_name", length = 50)
     private String firstName;
 
     @NotNull
@@ -64,7 +64,7 @@ public class User {
             JsonViews.Update.class
     })
     @Schema(description = "The last name of the user", example = "Smith")
-    @Column(name = "last_name")
+    @Column(name = "last_name", length = 50)
     private String lastName;
 
     @JsonView({
@@ -74,7 +74,7 @@ public class User {
             JsonViews.Update.class
     })
     @Schema(description = "The phone number of the user", example = "+31 68 123 1234")
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", length = 13)
     private String phoneNumber;
 
     @NotNull
@@ -97,20 +97,30 @@ public class User {
     private Instant createdAt;
 
     @JsonView({
-            JsonViews.View.class,
-            JsonViews.ViewAll.class,
-    })
-    @Schema(description = "Whom created the user", example = "John Doe")
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @JsonView({
             JsonViews.ViewAll.class,
             JsonViews.Add.class,
             JsonViews.Update.class
     })
     @Schema(description = "A note about the user", example = "Just an example user")
+    @Column(name = "note", length = 1000)
     private String note;
+
+    @JsonView({
+            JsonViews.View.class,
+            JsonViews.ViewAll.class,
+            JsonViews.Add.class,
+    })
+    @Schema(description = "The user id of the user whom created the user.", example = "1")
+    @Column(name = "parent_id")
+    private Integer parentId;
+
+    @JsonView({
+            JsonViews.View.class,
+            JsonViews.ViewAll.class,
+    })
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id")
+    private User createdBy;
 
     public interface JsonViews {
 

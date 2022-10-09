@@ -35,6 +35,7 @@
         <utilities.version>1.0.0-SNAPSHOT</utilities.version>
         <keycloak.version>19.0.2</keycloak.version>
         <infinispan.version>14.0.0.Final</infinispan.version>
+        <middleware.database.postgres.version>1.0.0-SNAPSHOT</middleware.database.postgres.version>
     </properties>
 
     <dependencies>
@@ -105,6 +106,11 @@
             <groupId>nl.georg..middleware.utilities</groupId>
             <artifactId>utilities</artifactId>
             <version>${utilities.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>nl.georg.middleware.database</groupId>
+            <artifactId>database-postgres</artifactId>
+            <version>${middleware.database.postgres.version}</version>
         </dependency>
     </dependencies>
 

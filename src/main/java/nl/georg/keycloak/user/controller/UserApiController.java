@@ -10,8 +10,8 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import nl.georg.keycloak.user.entities.User;
-import nl.georg.keycloak.user.models.UserDTO;
 import nl.georg.keycloak.user.mapper.UserMapper;
+import nl.georg.keycloak.user.models.UserDTO;
 import nl.georg.keycloak.user.repository.UserRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -30,7 +30,7 @@ import java.util.List;
 @SecurityRequirement(name = "security_auth")
 @Tag(name = "User Controller", description = "API to retrieve user information")
 @AllArgsConstructor
-public class UserController {
+public class UserApiController {
 
     private final UserRepository userRepository;
 
