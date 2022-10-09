@@ -1,1 +1,1 @@
-# keycloak-resource-server
+# Keycloak Resource Server

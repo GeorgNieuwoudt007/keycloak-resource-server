@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: middleware-keycloak
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: login-app
+            authorization-grant-type: authorization_code
+            scope: openid
+            issuer-uri: 'http://localhost:8000/auth/realms/SpringBootKeycloak'
+            user-name-attribute: preferred_username
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8000/realms/demo
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  info.env.enabled: true
+
+info:
+  app:
+    name: @project.name@
+    description: @project.description@
+    version: @project.version@
+    developer:
+      name: @project.developers[0].name@
+      email: @project.developers[0].email@
+    license:
+      name: @project.licenses[0].name@
+      url: @project.licenses[0].url@
+
+springdoc:
+  swagger-ui:
+    oauth:
+      client-id: swagger-ui
+      use-pkce-with-authorization-code-grant: true
+
+logging:
+  level:
+    nl:
+      georg: DEBUG
+
+server:
+  port: 8001
+  error:
+    include-messages: always
