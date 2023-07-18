@@ -1,6 +1,6 @@
 spring:
   application:
-    name: middleware-keycloak
+    name: keycloak-resource-server
   security:
     oauth2:
       client:
@@ -14,6 +14,26 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8000/realms/demo
+  jpa:
+    generate-ddl: true
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 100
+        order_updates: true
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/keycloakdb?CASE_INSENSITIVE_IDENTIFIERS=TRUE
+    hikari:
+      schema: keycloakdb
+  sql:
+    init:
+      mode: ALWAYS
 
 management:
   endpoints:
@@ -24,18 +44,6 @@ management:
     health:
       show-details: always
   info.env.enabled: true
-
-info:
-  app:
-    name: @project.name@
-    description: @project.description@
-    version: @project.version@
-    developer:
-      name: @project.developers[0].name@
-      email: @project.developers[0].email@
-    license:
-      name: @project.licenses[0].name@
-      url: @project.licenses[0].url@
 
 springdoc:
   swagger-ui:

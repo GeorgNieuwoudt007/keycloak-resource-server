@@ -15,7 +15,7 @@ public class KeycloakRoleConverter implements Converter<Jwt, Collection<GrantedA
     @Override
     @SuppressWarnings("unchecked")
     public Collection<GrantedAuthority> convert(Jwt jwt) {
-        final Map<String, Object> realmAccess = (Map<String, Object>) jwt.getClaims().get("realm_access");
+        final var realmAccess = (Map<String, Object>) jwt.getClaims().get("realm_access");
 
         return ((List<String>) realmAccess.get("roles"))
                 .stream()
