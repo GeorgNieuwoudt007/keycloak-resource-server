@@ -92,9 +92,10 @@ public class UserApiController {
                                    example = "1"
                            )
                            String userToken) {
-        var user = userRepository.findUserByGeneratedToken(userToken);
-
-        if (user == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "The userToken is invalid");
+        var user = userRepository.findUserByGeneratedToken(userToken)
+                .orElseThrow(
+                        () -> new ResponseStatusException(HttpStatus.FORBIDDEN, "The userToken is invalid")
+                );
 
         return UserMapper.INSTANCE.userDTO(user);
     }
