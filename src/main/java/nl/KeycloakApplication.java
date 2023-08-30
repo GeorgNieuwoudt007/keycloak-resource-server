@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
 
 @SecurityScheme(
         name = "security_auth",
@@ -18,7 +19,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
                 )
         )
 )
-@SpringBootApplication(scanBasePackages = "nl.georg.keycloak")
+@SpringBootApplication(scanBasePackages = "nl.georg.keycloak", exclude = LiquibaseAutoConfiguration.class)
 @EntityScan(basePackages = {"nl.georg.keycloak.user.entities"})
 public class KeycloakApplication {
 

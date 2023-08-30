@@ -15,9 +15,11 @@ spring:
         jwt:
           issuer-uri: http://localhost:8000/realms/demo
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     generate-ddl: true
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         jdbc:
           batch_size: 100
         order_updates: true
@@ -28,7 +30,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres
-    url: jdbc:postgresql://localhost:5432/keycloakdb?CASE_INSENSITIVE_IDENTIFIERS=TRUE
+    url: jdbc:postgresql://172.17.132.56:5432/keycloakdb?CASE_INSENSITIVE_IDENTIFIERS=TRUE
     hikari:
       schema: keycloakdb
   sql:
