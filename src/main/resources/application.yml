@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: keycloak-resource-server
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: login-app
+            authorization-grant-type: authorization_code
+            scope: openid
+            issuer-uri: 'http://localhost:8000/auth/realms/SpringBootKeycloak'
+            user-name-attribute: preferred_username
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:8000/realms/demo
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          batch_size: 100
+        order_updates: true
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/keycloakdb?CASE_INSENSITIVE_IDENTIFIERS=TRUE
+    hikari:
+      schema: keycloakdb
+  sql:
+    init:
+      mode: ALWAYS
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  info.env.enabled: true
+
+springdoc:
+  swagger-ui:
+    oauth:
+      client-id: swagger-ui
+      use-pkce-with-authorization-code-grant: true
+
+logging:
+  level:
+    nl:
+      georg: DEBUG
+
+server:
+  port: 8001
+  error:
+    include-message: always

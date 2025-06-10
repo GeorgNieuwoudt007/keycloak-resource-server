@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  keycloak:
+    image: jboss/keycloak:latest
+    command:
+      - "-b"
+      - "localhost"
+      - "-Dkeycloak.migration.action=import"
+      - "-Dkeycloak.migration.provider=dir"
+      - "-Dkeycloak.migration.dir=/config/"
+      - "-Dkeycloak.migration.strategy=IGNORE_EXISTING"
+    volumes:
+      - ./config:/config/
+    environment:
+      - KEYCLOAK_USER=keycloak
+      - KEYCLOAK_PASSWORD=keycloak
+      - DB_VENDOR=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_ADDR=localhost
+      - DB_PORT=5432
+      - DB_DATABASE=keycloakdb
+    ports:
+      - "8000:8080"
+    depends_on:
+      - database
+
+  database:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=keycloakdb
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
