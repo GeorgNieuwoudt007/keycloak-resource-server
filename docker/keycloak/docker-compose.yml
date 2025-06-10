@@ -5,7 +5,7 @@ services:
     image: jboss/keycloak:latest
     command:
       - "-b"
-      - "172.17.132.56"
+      - "localhost"
       - "-Dkeycloak.migration.action=import"
       - "-Dkeycloak.migration.provider=dir"
       - "-Dkeycloak.migration.dir=/config/"
@@ -18,21 +18,23 @@ services:
       - DB_VENDOR=postgres
       - DB_USER=postgres
       - DB_PASSWORD=postgres
-      - DB_ADDR=172.17.132.56
+      - DB_ADDR=localhost
       - DB_PORT=5432
       - DB_DATABASE=keycloakdb
     ports:
       - "8000:8080"
     depends_on:
-      - keycloak-db
+      - database
 
-  keycloak-db:
+  database:
     image: postgres:latest
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=keycloakdb
       - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
