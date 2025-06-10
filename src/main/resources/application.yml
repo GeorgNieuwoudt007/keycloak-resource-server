@@ -61,4 +61,4 @@ logging:
 server:
   port: 8001
   error:
-    include-messages: always
+    include-message: always

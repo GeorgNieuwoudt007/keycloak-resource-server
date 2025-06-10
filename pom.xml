@@ -23,12 +23,6 @@
             <email>georg.nieu@gmail.com</email>
         </developer>
     </developers>
-    <licenses>
-        <license>
-            <name>APACHE LICENSE, VERSION 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
-        </license>
-    </licenses>
 
     <properties>
         <java.version>17</java.version>
